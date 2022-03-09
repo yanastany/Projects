@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Red Dead Redemption 2 Guide</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <link rel="stylesheet" href="formular.css" type="text/css" />  
+        <script type="text/javascript" src="test.js" defer></script>
+         
+          
+</head>
+
+<body>
+        <nav>
+            <ul class = "meniu">
+                <li><a href="index.html"><img id="poza" border="0" src="redsigla.png" alt="sigla"></a></li>
+                <li><a class="casa" href= "index.html">Despre joc</a></li>
+                <li><a class="casa" href= "#Nature">Fauna Vestului Mijlociu</a>
+                    <ul class="submeniu">
+                        <li><a class="casa" href = "Horses.html">Cai</a></li>
+                        <!--<li><a href = "Hunting.html">Animale</a></li>-->
+                        <li><a class="casa" href = "../Pesti/Fishing.html">Pescuit</a></li>
+                    </ul></li>
+                <li><a class="casa" href= "#World">Vestul Mijlociu</a>
+                    <ul class="submeniu">
+                        <li><a class="casa" href = "../Galerie/Galerie.html">Galerie</a></li>
+                        <!--<li><a href = "Gunslingers.html">pistolari</a></li>-->
+                        <li><a class="casa" href = "../Map/Map.html">Map</a></li>
+                    </ul></li>
+                <li><a class="casa" href= "Story.html">Joc si Online</a>
+                    <ul class="submeniu">
+                        <li><a class="casa" href = "../Online/Online.html">Online</a>
+                        <li><a class="casa"href = "../Javajoc/Joc.html">Joc</a></li>
+                        <li><a class="casa"href = "formular.html">formular</a></li>
+                        <!--li><a href = "ArthurMorgan.html">Arthur Morgan</a></li>
+                        <li><a href = "Characters.html">Characters</a></li>--></li></ul>
+                <li><a class="casa" href= "../Detalii/detalii.html">Detalii</a></li>
+            </ul>
+        </nav>
+        <div class="asezare">
+             <form method="post" action="/intrebare">
+			
+			<label>Intrebare
+				<input type="text" name="cuvant">
+			</label>
+			
+			<label>Jocul
+				<select name="limba">
+					<option value="RDR2">RDR2</option>
+					<option value="RDR1">RDR1</option>
+				</select>
+			</label>
+			<input type="submit">
+		</form>
+        </div>
+
+        <div id ='form'>
+            <form id="testform" method="get" action="/intr">
+                <button type="submit" id="buton"> Afiseaza intrebarea </button>
+            </form>
+        
+        <form id="testform" method="post" action="/salveaza" enctype="multipart/form-data">
+                <p> <label>Intrebare</label> <input type="text" name="question"> </p>
+                <p> <label>Raspuns</label><input type="text" name="answer"></p>
+                <p> <label>Dificultate</label> <input type="text" name="difficulty"> </p>
+                <p><button type="submit" id="buton"> Trimite </button> </p>
+            </form>
+       </form> </div>
+
+       <form id="formlog" method="post" action="/adaugauser" enctype="multipart/form-data">
+        <p> <label>Username</label> <input type="text" name="user"> </p>
+        <p> <label>Parola</label><input type="text" name="pass"></p>
+        <p><button type="submit" class="buton"> Trimite </button> </p>
+    </form>
+
+   
+       
+    </body>

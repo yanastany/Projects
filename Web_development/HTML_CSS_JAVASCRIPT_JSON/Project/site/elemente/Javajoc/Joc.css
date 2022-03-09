@@ -1,0 +1,153 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+@font-face {
+    font-family: myFirstFont;
+    src: url(Rustler-lxq5.ttf);
+
+  }
+  ul img {
+    height: 100%;
+    width: 78px;
+    float: left;
+    top: 0px;
+    
+}
+nav #poza {
+  height: auto;
+    width: 100px;
+    float: left;
+    top: 0px;
+}
+nav{
+  width: 100%;
+  height: 80px;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+nav ul{
+  list-style-type: none;
+}
+nav .casa{
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  font-family: myFirstFont;
+  /*font-family: Savath;
+  font-family: Lawless Font
+  font-weight: 0;
+  font-variant: small-caps;*/
+  display: block;
+  height:100%;
+  
+}
+ul.meniu{
+display: flex;
+flex-direction:row;
+flex-wrap:nowrap;
+justify-content:space-evenly;
+}
+ul.meniu>li{
+    flex-grow:1;
+    height: 70px ;
+    text-align: center;
+    line-height: 70px;
+  }
+  ul.meniu>li>ul.submeniu{
+  visibility: hidden;
+  text-align: center;
+  }
+  ul.meniu>li:hover>ul.submeniu{
+  visibility: visible;
+  text-align: center;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.753);
+  }
+  ul.meniu li:hover{
+    background-color: rgb(0, 0, 0);
+  }
+
+  body{
+    background-image: url(fundal.png) ;
+    background-repeat: repeat;
+    background-size: 300px;
+    padding-top: 80px ;
+  }
+#asezare{
+    color: white;
+    font-size: 30px;
+    font-family: myFirstFont;
+    
+}
+#asezare h1{
+  padding: 10px;
+  background-color: black;
+  text-align: center;
+}
+#main{
+  
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-family: myFirstFont;
+}
+#main p{
+  background-color: black;
+  text-align: center;
+}
+#main #vieti{
+  background-color: black;
+  text-align: center;
+  
+}
+#again{
+  
+  width: 100px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-family: myFirstFont;
+  border: 2px solid white;
+  background-color: black;
+  margin-left: 46%;
+}
+#guess{
+  width: 300px;
+  height: 50px;
+  border: 2px solid black;
+  font-family: myFirstFont;
+  font-size: 30px;
+}
+#check{
+  
+  width: 200px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-family: myFirstFont;
+  border: 2px solid white;
+  background-color: black;
+  
+}
+#jucatori{
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-family: myFirstFont;
+  background-color: black;
+}
+
+#titlu {
+    
+    
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 25px;
+font-family: myFirstFont;
+border: 2px solid white;
+  text-align: center;
+  width: 50%;
+}

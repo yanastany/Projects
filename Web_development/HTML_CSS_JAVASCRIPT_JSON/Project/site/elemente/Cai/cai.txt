@@ -1,0 +1,144 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+@font-face {
+    font-family: myFirstFont;
+    src: url(../../Rustler-lxq5.ttf);
+
+  }
+  nav #poza {
+    height: auto;
+      width: 100px;
+      float: left;
+      top: 0px;
+  }
+  nav{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+  nav ul{
+    list-style-type: none;
+  }
+  nav .casa{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    font-family: myFirstFont;
+    /*font-family: Savath;
+    font-family: Lawless Font
+    font-weight: 0;
+    font-variant: small-caps;*/
+    display: block;
+    height:100%;
+    
+  }
+ul.meniu{
+display: flex;
+flex-direction:row;
+flex-wrap:nowrap;
+justify-content:space-evenly;
+}
+ul.meniu>li{
+    flex-grow:1;
+    height: 70px ;
+    text-align: center;
+    line-height: 70px;
+  }
+  ul.meniu>li>ul.submeniu{
+  visibility: hidden;
+  text-align: center;
+  }
+  ul.meniu>li:hover>ul.submeniu{
+  visibility: visible;
+  text-align: center;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.753);
+  }
+  ul.meniu li:hover{
+    background-color: rgb(0, 0, 0);
+  }
+
+  body{
+    background-image: url(fundal.png) ;
+    background-repeat: repeat;
+    background-size: 300px;
+    padding-top: 80px ;
+  }
+
+  @keyframes poze
+  {
+    0%
+    {
+      opacity: 0;
+    }
+    30%
+    {opacity: 0.3;}
+    60%
+    {opacity: 0.6;}
+    100%
+    {opacity: 1;}
+  }
+
+#cai #titlu{
+  padding-top: 10px;
+   font-size: 60px;
+    font-family: myFirstFont;
+    text-align: center;
+    color:rgb(223, 18, 28); ;
+    background-color:black;
+
+}
+
+#pozecai p
+{
+  text-align: center;
+  background-color: black;
+  background-size: 300px;
+  border: 2px solid white;
+  color: white;
+  font-size: 30px;
+  font-family: myFirstFont;
+  text-align: center;
+
+}
+
+
+
+#pozecai{
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  transition: position 3s, z-index 2s, transform 7s, border 3s, text 3s;
+  animation-name: poze;
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  position: relative;
+}
+
+#cai>#pozecai>:hover{
+  position: relative;
+  z-index: inherit;
+  transform: scale(1.5);
+
+}
+
+.speciali::after{
+  content: "(Sunt la Pronghorn Ranch - Epilogue)";
+  background-color: white;
+  color:rgb(223, 18, 28) ;
+  font-size: 15px;
+  font-family: myFirstFont;
+}
+
+#pozecai img{
+  height: 250px;
+  width: 350px;
+  padding-top:20px;
+}

@@ -1,0 +1,75 @@
+{
+  "test": [
+    {
+     "question": "What is the biggest town in the game which offers most services the player needs?",
+     "answer": "Saint Denis!",
+     "difficulty": 1
+    },
+    {
+      "question": "Who does the gang save when they raid the home filled with O'Driscolls in the snow storm?",
+      "answer": "Sadie Adler",
+      "difficulty": 1
+    },
+    {
+      "question": "Which settlement is located in the region 'West Elizabeth' ?",
+      "answer": "Strawberry",
+      "difficulty": 3
+    },
+    {
+      "question": "Who is presumed dead after the last train robbery?",
+      "answer": "John Marston",
+      "difficulty": 3
+    },
+    {
+       "question": "Who does the player control after Arthur dies?",
+       "answer": "John Marston",
+       "difficulty": 1
+    },
+    {
+      "question": "Who asks for Arthur's help to finish off the O'Driscolls?",
+      "answer": "Sadie Adler",
+      "difficulty": 2
+    },
+    {
+      "question": "What does Arthur stand in front of to stop with John, Sean, and Charles?",
+      "answer": "Train",
+      "difficulty": 1
+    },
+    {
+      "question": "What location does the gang move to when Arthur came looking for them?",
+      "answer": "Lakay",
+      "difficulty": 3
+    },
+    {
+      "question": "What does Arthur and Hosea do at the saloon in Rhodes after seeing the Braithwaites?",
+      "answer": "Hand out free beer",
+      "difficulty": 1
+    },
+    {
+      "question": "Who initiates a robbery with Arthur at the Valentine bank?",
+      "answer": "Bill Williamson",
+      "difficulty": 2
+    },
+    {
+      "question": "What status code represents 'Page Not Found'?",
+      "answer": "404",
+      "difficulty": 1
+    },
+    {
+      "question": "Which gold gun does Dutch dual wield the entire game?",
+      "answer": "Schofield Revolver",
+      "difficulty": 1
+    },
+    {
+      "question": "What price was Arthur, Javier, and John looking for selling the 3 horses stolen from the Braithwates?",
+      "answer" : "$5,000",
+      "difficulty": 3
+    },
+    {
+      "question": "Who is the German man Arthur returns to his family?",
+      "answer" : "Andreas",
+      "difficulty": 2
+    }
+    
+  ]
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <link rel="stylesheet" href="login.css" type="text/css" />  
+        
+         
+        <link rel="icon" href="redsigla.png">
+</head>
+
+<body>
+        <nav>
+            <ul class = "meniu">
+                <li><a href="index.html"><img id="poza" border="0" src="redsigla.png" alt="sigla"></a></li>
+                <li><a class="casa" href= "index.html">Despre joc</a></li>
+                <li><a class="casa" href= "#Nature">Fauna Vestului Mijlociu</a>
+                    <ul class="submeniu">
+                        <li><a class="casa" href = "elemente/Cai/Horses.html">Cai</a></li>
+                        <!--<li><a href = "Hunting.html">Animale</a></li>-->
+                        <li><a class="casa" href = "elemente/Pesti/Fishing.html">Pescuit</a></li>
+                    </ul></li>
+                <li><a class="casa" href= "#World">Vestul Mijlociu</a>
+                    <ul class="submeniu">
+                        <li><a class="casa" href = "elemente/Galerie/Galerie.html">Galerie</a></li>
+                        <!--<li><a href = "Gunslingers.html">pistolari</a></li>-->
+                        <li><a class="casa" href = "elemente/Map/Map.html">Map</a></li>
+                    </ul></li>
+                <li><a class="casa" href= "Story.html">Joc si Online</a>
+                    <ul class="submeniu">
+                        <li><a class="casa" href = "elemente/Online/Online.html">Online</a>
+                        <li><a class="casa"href = "elemente/Javajoc/Joc.html">Joc</a></li>
+                        <li><a class="casa"href = "formular.html">formular</a></li>
+                        <!--<li><a href = "Plot.html">Plot</a></li>
+                        <li><a href = "ArthurMorgan.html">Arthur Morgan</a></li>
+                        <li><a href = "Characters.html">Characters</a></li>-->
+                    </ul> </li>
+                <li><a class="casa" href= "elemente/Detalii/detalii.html">Detalii</a></li>
+            </ul>
+        </nav>
+    <main>
+        <form id="formlog" method="post" action="/login" enctype="multipart/form-data">
+            <p> <label>Username</label> <input type="text" name="user"> </p>
+            <p> <label>Parola</label><input type="text" name="pass"></p>
+            <p><button type="submit" class="buton"> Login </button> </p>
+        </form>
+    
+        <form id="testform" method="get" action="/logout">
+            <button type="submit" class="buton"> Logout </button>
+        </form>
+    </main>
+</body>

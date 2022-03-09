@@ -1,0 +1,144 @@
+@media screen and (max-width:600px)
+{
+ 
+ *{
+  margin: 0px;
+  padding: 0px;
+}
+@font-face {
+    font-family: myFirstFont;
+    src: url(../../Rustler-lxq5.ttf);
+
+  }
+  nav #poza {
+    height: auto;
+      width: 50px;
+      float: left;
+      top: 0px;
+  }
+  nav{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+  nav ul{
+    list-style-type: none;
+  }
+  nav .casa{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-family: myFirstFont;
+    /*font-family: Savath;
+    font-family: Lawless Font
+    font-weight: 0;
+    font-variant: small-caps;*/
+    display: block;
+    height:100%;
+    
+  }
+ul.meniu{
+display: flex;
+flex-direction:row;
+flex-wrap:nowrap;
+justify-content:space-evenly;
+}
+ul.meniu>li{
+    flex-grow:1;
+    height: 70px ;
+    text-align: center;
+    line-height: 70px;
+  }
+  ul.meniu>li>ul.submeniu{
+  visibility: hidden;
+  text-align: center;
+  }
+  ul.meniu>li:hover>ul.submeniu{
+  visibility: visible;
+  text-align: center;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.753);
+  }
+  ul.meniu li:hover{
+    background-color: rgb(0, 0, 0);
+  }
+
+  body{
+    /*  background-color: rgb(223, 18, 28);*/
+    padding-top: 80px;
+    background-image: url(fundal.png) ;
+    background-size: 600px;
+  }
+
+  #galerie-animata img{
+      padding-top: 50px;
+  }
+  #galerie-animata>h1
+  {
+    font-size: 30px;
+    font-family: myFirstFont;
+    text-align: center;
+    color:rgb(223, 18, 28); ;
+    background-color:black;
+    
+  }
+
+  #container-poze img{
+      width: 400px;
+      height: auto;
+    margin: auto;
+  }
+
+  #container-animatie {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+}
+
+#container-poze {
+    display: flex;
+    flex-flow: nowrap;
+    animation-name: aparitie;
+    animation-duration: 12s;
+    animation-delay: 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes aparitie {
+    0% {
+        margin-left: 0px;
+    }
+    10% {
+        margin-left: 0px;
+    }
+    20% {
+        margin-left: -400px;
+    }
+    30% {
+        margin-left: -400px;
+    }
+    40% {
+        margin-left: -800px;
+    }
+    50% {
+        margin-left: -800px;
+    }
+    60% {
+        margin-left: -1200px;
+    }
+    70% {
+        margin-left: -1200px;
+    }
+    80% {
+        margin-left: -1600px;
+    }
+    100% {
+        margin-left: -1200px;
+    }
+}
