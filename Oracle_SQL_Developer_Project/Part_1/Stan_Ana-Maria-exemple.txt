@@ -1,0 +1,146 @@
+--ex 11 Explicatiile se gasesc in word!!!! documentatia incepe la pag 21
+--11.1.	Să se afișeze numele, prenumele și codul recepționistelor care au făcut cele mai multe rezervări
+
+select nume_angajat, prenume_angajat, cod_angajat from angajati
+where lower(tip_angajat) = 'receptionista' and (cod_angajat in (select cod_angajat from rezervare
+group by cod_angajat
+having count(*)=(SELECT max(count(*)) from rezervare group by cod_angajat)));
+
+--11.2	Să se aleagă codul clientului, emailul, data rezervării, data când începe rezervarea, numărul camerei și numele 
+--hotelului clienților care au următoarea zi de luni după efectuarea rezervării după data de 9 aprilie 2021 și distanța dintre 
+--data rezervării și data de pe cât începe sejurul să fie mai mare de 3 luni. Să se ordoneze alfabetic după email ignorand faptul 
+--că încep sau nu cu literă mare. În plus, dacă emailul este null să se înlocuiască cu 'Nu are email!'.
+
+select c.cod_client,nvl(email,'Nu are email!'),r.data_rezervare,r.data_start,cr.numar_camera,h.nume_hotel from clientul c
+join rezervare r on (c.cod_client = r.cod_client)
+join camera cr on (cr.cod_camera=r.cod_camera)
+join hotel h on (h.cod_hotel=cr.cod_hotel)
+where NEXT_DAY(r.data_rezervare,'Monday') > TO_DATE('09.04.2021', 'DD-MM-YYYY') and MONTHS_BETWEEN(r.data_start,r.data_rezervare )>3
+order by upper(nvl(email,'Nu are email!'));
+
+--11.3 	Să se afișeze codul clientului, codul rezervării 
+--și dacă data rezervării este prima zi din luna februarie a clienților care provin 
+--dintr-un continent care are mai mult de 6 litere.
+--nesincronizate 
+select r.cod_rezervare,cod_client,DECODE(data_rezervare,TO_DATE ('01-02-2021','DD-MM-YYYY'),'Prima zi din luna februarie','Nu este prima zi din luna februarie')"zi" from rezervare r
+WHERE r.cod_client in (select c.cod_client from clientul c
+where c.cod_tara in (select t.cod_tara from tara t
+where LENGTH(t.regiune_tara)> 6));
+
+--11.4.	Să se afișeze codul rezervării, codul clientului și 
+--dacă rezervarea a fost făcută după sau înainte de 5 aprilie 2021, a rezervărilor făcute de clienți care provin din România. 
+
+--sincronizate
+select r.cod_rezervare,cod_client, case when r.data_rezervare >to_date('05-04-2021', 'DD-MM-YYYY') then 'rezervarea a fost facuta dupa 02-04-2021' else 'rezervarea a fost facuta inainte de 02-04-2021' end "rezervare"  from rezervare r
+WHERE r.cod_client in (select c.cod_client from clientul c
+where c.cod_tara in (select t.cod_tara from tara t
+where t.cod_tara=c.cod_tara));
+
+--11.5.	Să se afișeze cu WITH câți angajați are fiecare hotel, să se ordoneze ascendent după codul hotelului.
+with tabel1 as(select cod_hotel, count(cod_hotel)numarangajati
+from angajati
+group by cod_hotel)
+select tabel1.numarangajati, h.cod_hotel
+from hotel h join tabel1 on (tabel1.cod_hotel=h.cod_hotel)
+order by h.cod_hotel asc;
+
+--Ex 12 Explicatia se gaseste in word, documentatia incepe la pag 24
+
+--12.1.	Să se seteze data rezervării în data curentă atunci când codul 
+--camerei se termină în 0 și luna în care s-a făcut rezervarea este luna cu cele mai multe rezervări.
+UPDATE rezervare
+SET data_rezervare = sysdate
+WHERE  cod_camera like ('%0') and (to_char(data_rezervare,'mm' ) in   (select to_char(data_rezervare,'mm') from rezervare
+group by to_char(data_rezervare,'mm')
+having count(*) = (SELECT max(count(*))from rezervare group by to_char(data_rezervare,'mm'))));
+ROLLBACK;
+
+--12.2.	Să se șteargă rezervările clienților care provin din România
+delete from rezervare
+where cod_client in (select cod_client from clientul c
+join tara t on c.cod_tara=t.cod_tara
+where lower(nume_tara)='romania');
+ROLLBACK;
+--12.3.	Să se șteargă rezervările făcute la RAMDA PARK HOTEL
+delete from rezervare
+where  cod_camera in(select cod_camera from camera c
+join hotel h on h.cod_hotel=c.cod_hotel
+where upper(nume_hotel)='RAMADA PARK HOTEL');
+ROLLBACK;
+
+--EX 13 secventele se gasesc in fisierul de creare dar o sa pun cateva exemple si aici documentatia incepe la pag 14
+CREATE SEQUENCE secvcamera
+INCREMENT BY 5
+START WITH 10
+MAXVALUE 1000
+NOCYCLE;
+--Insert into camera
+--Values(secvcamera.nextval,100,8);
+
+CREATE SEQUENCE secvtara
+INCREMENT BY 2
+START WITH 1
+MAXVALUE 100
+NOCYCLE;
+
+--Insert into tara
+--Values(secvtara.nextval,'Romania','Europa');
+
+CREATE SEQUENCE secclient
+INCREMENT BY 3
+START WITH 50
+MAXVALUE 1000
+NOCYCLE;
+
+--Insert into clientul
+--Values(secclient.nextval,'Becali','Gigi','gigi.becali@gigifcsb.ro','07717171',3);
+
+--EX 16 documentatia incepe la pagina 27
+
+--Cerință outerjoin:
+--16.1 Să se afișeze codul camerei, codul ultimului client care a stat în cameră, codul rezervării 
+--curente pe cameră (dacă nu există, să se completeze cu „Nu e rezervare pe camera!”), numele și codul angajatului 
+--care a făcut rezervarea (daca nu există, să se completeze cu „Nu a preluat nici o recepționera rezervarea pe camera!”), 
+--care apar în tabelele cameră și rezervare, apoi al celor care apar și în istoricul camerei.
+select cr.cod_camera,a.cod_client, NVL(to_char(r.cod_rezervare),'Nu e rezervare pe camera!')"Rezervare",
+nvl(to_char(ang.cod_angajat), 'Nu a preluat nici o receptionera rezervarea pe camera!')"Receptionista", ang.nume_angajat
+from camera cr left OUTER join rezervare r on (r.cod_camera=cr.cod_camera)
+right outer join apare_in_istoricul a on(a.cod_camera=cr.cod_camera)
+left outer join angajati ang on (r.cod_angajat=ang.cod_angajat);
+
+--16.2. Cerință division:
+--Să se obțină camerele pe care le îngrijesc și codurile angajaților distincți care au salariul egal cu 3300.
+
+SELECT DISTINCT cod_angajat, cod_camera
+FROM este_atasata a
+WHERE NOT EXISTS
+(SELECT 1
+FROM angajati b
+where salariu_lunar = 3300
+AND NOT EXISTS
+(SELECT 'x'
+FROM este_atasata c
+WHERE a.cod_camera = c.cod_camera
+AND a.cod_angajat=b.cod_angajat
+)
+);
+
+--16.3. Cerință division:
+--Să se obțină codul agnaților distincți care lucrează în hotelul cu codul 8.
+
+SELECT cod_angajat
+FROM este_atasata
+WHERE cod_camera IN
+(SELECT cod_camera
+FROM camera
+WHERE cod_hotel =11
+)
+GROUP BY cod_angajat
+HAVING COUNT (cod_camera)=
+(SELECT COUNT(cod_camera)
+FROM camera
+WHERE cod_hotel =11
+);
+
+
+

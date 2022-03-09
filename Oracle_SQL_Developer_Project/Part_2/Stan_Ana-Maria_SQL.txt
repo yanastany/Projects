@@ -1,0 +1,838 @@
+CREATE TABLE HOTEL(
+cod_hotel number(4) CONSTRAINT pkey1_h primary key,
+nume_hotel varchar2(40) not null,
+adresa varchar2(60) not null UNIQUE
+);
+ 
+
+CREATE TABLE CAMERA(
+cod_camera number(4) constraint pkey2_C PRIMARY key,
+numar_camera number(4) not null,
+cod_hotel number(4),
+CONSTRAINT fk_h FOREIGN KEY(cod_hotel) REFERENCES HOTEL(cod_hotel)
+);
+
+CREATE TABLE TARA(
+cod_tara number(3) constraint pkey5_t primary key,
+nume_tara varchar2(20) not null,
+regiune_tara varchar2(20) not null
+);
+
+CREATE TABLE CLIENTUL(
+cod_client number(4) CONSTRAINT pkey4_client PRIMARY KEY,
+nume varchar2(20) not null,
+prenume varchar2(30) not null,
+email varchar2(40),
+telefon varchar2(10) not null,
+cod_tara number(3) not null,
+CONSTRAINT fk_tara FOREIGN KEY(cod_tara) REFERENCES TARA(cod_tara)
+);
+
+CREATE TABLE ANGAJATI( 
+cod_angajat number(4) constraint pkey_ang PRIMARY KEY,
+cod_hotel number(4),
+nume_angajat varchar2(20) not null,
+prenume_angajat varchar2(20) not null,
+salariu_lunar NUMBER(7) not null,
+tip_angajat VARCHAR2(20),
+comision_clientreceptionista number(2),
+firmamenaj varchar2(20),
+CONSTRAINT fk_h2 FOREIGN KEY(cod_hotel) REFERENCES HOTEL(cod_hotel)
+);
+
+CREATE TABLE REZERVARE(
+cod_rezervare number(5) constraint pkey3_R PRIMARY KEY,
+data_start date,
+data_final date,
+data_rezervare date,
+cod_client number(4),
+cod_camera number(4),
+cod_angajat number(4),
+CONSTRAINT fk_client1 FOREIGN KEY(cod_client) REFERENCES CLIENTUL(cod_client),
+CONSTRAINT fk_camera1 FOREIGN KEY(cod_camera) REFERENCES CAMERA(cod_camera),
+CONSTRAINT fk_receptionista1 FOREIGN KEY(cod_angajat) REFERENCES ANGAJATI(cod_angajat)
+); --angajat
+
+CREATE TABLE APARE_IN_ISTORICUL(
+cod_camera number(4),
+CONSTRAINT fk_camera2istcam FOREIGN KEY(cod_camera) REFERENCES CAMERA(cod_camera),
+cod_client number(4),
+CONSTRAINT fk_client1istcam FOREIGN KEY(cod_client) REFERENCES CLIENTUL(cod_client),
+pret number(6) not null,
+CONSTRAINT pk_compusistcam PRIMARY KEY(cod_camera, cod_client)
+);
+
+CREATE TABLE ESTE_ATASATA(
+cod_angajat number(4),
+cod_camera number(4),
+numardeoreingrijire number(2),
+CONSTRAINT fk_camera3 FOREIGN KEY(cod_camera) REFERENCES CAMERA(cod_camera),
+CONSTRAINT fk_angajat1 FOREIGN KEY(cod_angajat) REFERENCES ANGAJATI(cod_angajat),
+CONSTRAINT pk_compus3 PRIMARY KEY(cod_camera, cod_angajat)
+);
+
+--10 introducere in tabele
+CREATE SEQUENCE secvhotel
+INCREMENT BY 3
+START WITH 5
+MAXVALUE 1000
+NOCYCLE;
+--INSERARE
+INSERT INTO HOTEL
+VALUES(secvhotel.nextval,'Ramada Park Hotel','Romania, Bucuresti, Sec.1, Poligrafiei Avenue 3');
+INSERT INTO HOTEL
+VALUES(SECVHOTEL.nextval,'Rin Grand Hotel','Romania, Bucuresti, Sec.4, Str. Vitan-Barzesti 7');
+INSERT INTO HOTEL
+VALUES(SECVHOTEL.nextval,'Club Hotel Falcon','Turcia, Antalya, Sirinyali Mah. 1512');
+INSERT INTO HOTEL
+VALUES(SECVHOTEL.nextval,'Baglioni Hotel Regina','Italia, Roma, Via Vittorio Veneto 72');
+INSERT INTO HOTEL
+VALUES(SECVHOTEL.nextval,'Hotel Malibu','Romania, Mamaia, Bulevardul Mamaia 316');
+SELECT
+    *
+FROM hotel;
+
+CREATE SEQUENCE secvcamera
+INCREMENT BY 5
+START WITH 10
+MAXVALUE 1000
+NOCYCLE;
+Insert into camera
+Values(secvcamera.nextval,100,8);
+Insert into camera
+Values(secvcamera.nextval,105,8);
+Insert into camera
+Values(secvcamera.nextval,110,8);
+Insert into camera
+Values(secvcamera.nextval,111,8);
+Insert into camera
+Values(secvcamera.nextval,112,8);
+Insert into camera
+Values(secvcamera.nextval,100,11);
+Insert into camera
+Values(secvcamera.nextval,122,11);
+Insert into camera
+Values(secvcamera.nextval,120,11);
+Insert into camera
+Values(secvcamera.nextval,124,11);
+Insert into camera
+Values(secvcamera.nextval,120,14);
+Insert into camera
+Values(secvcamera.nextval,200,14);
+Insert into camera
+Values(secvcamera.nextval,201,14);
+Insert into camera
+Values(secvcamera.nextval,202,14);
+Insert into camera
+Values(secvcamera.nextval,300,17);
+Insert into camera
+Values(secvcamera.nextval,200,17);
+Insert into camera
+Values(secvcamera.nextval,350,17);
+Insert into camera
+Values(secvcamera.nextval,355,17);
+Insert into camera
+Values(secvcamera.nextval,300,20);
+Insert into camera
+Values(secvcamera.nextval,400,20);
+Insert into camera
+Values(secvcamera.nextval,440,20);
+Insert into camera
+Values(secvcamera.nextval,410,20);
+Insert into camera
+Values(secvcamera.nextval,430,20);
+
+
+CREATE SEQUENCE secvtara
+INCREMENT BY 2
+START WITH 1
+MAXVALUE 100
+NOCYCLE;
+
+Insert into tara
+Values(secvtara.nextval,'Romania','Europa');
+Insert into tara
+Values(secvtara.nextval,'Italia','Europa');
+Insert into tara
+Values(secvtara.nextval,'Spania','Europa');
+Insert into tara
+Values(secvtara.nextval,'Germania','Europa');
+Insert into tara
+Values(secvtara.nextval,'Uganda','Africa');
+Insert into tara
+Values(secvtara.nextval,'Nigeria','Africa');
+Insert into tara
+Values(secvtara.nextval,'SUA','America de Nord');
+Insert into tara
+Values(secvtara.nextval,'Canada','America de Nord');
+Insert into tara
+Values(secvtara.nextval,'Columbia','America de Sud');
+Insert into tara
+Values(secvtara.nextval,'Argentina','America de Sud');
+Insert into tara
+Values(secvtara.nextval,'China','Asia');
+Insert into tara
+Values(secvtara.nextval,'Japonia','Asia');
+Insert into tara
+Values(secvtara.nextval,'Norvegia','Europa');
+Insert into tara
+Values(secvtara.nextval,'Grecia','Europa');
+
+CREATE SEQUENCE secclient
+INCREMENT BY 3
+START WITH 50
+MAXVALUE 1000
+NOCYCLE;
+
+
+
+Insert into clientul
+Values(secclient.nextval,'Cristi','Gigi','cristi@gmail.ro','07717171',3);
+Insert into clientul
+Values(secclient.nextval,'Popa','Dorian','dorian11@gmail.com','07717333',3);
+Insert into clientul
+Values(secclient.nextval,'Giorno','Giovanna','GiGiovanna@jojo.it','07734223',5);
+Insert into clientul
+Values(secclient.nextval,'Ramos','Sergio','s.ramos@RLMAD.sp','044123536',7);
+Insert into clientul
+Values(secclient.nextval,'Polo','Marco',NULL,'0752223',5);
+Insert into clientul
+Values(secclient.nextval,'Veratii','Mario','Vertatmari2@hermes.it','07034221',5);
+Insert into clientul
+Values(secclient.nextval,'Tartini','Giuseppe',NULL,'09934211',5);
+Insert into clientul
+Values(secclient.nextval,'Olushola','Ajose',NULL,'0778223',13);
+Insert into clientul
+Values(secclient.nextval,'Drakos','Papadopoulos','Drakos22@gmail.com','07780253',29);
+Insert into clientul
+Values(secclient.nextval,'Demetriou','Georgiou',NULL,'077802901',29);
+Insert into clientul
+Values(secclient.nextval,'Alma','Lionel','almlin@yahoo.com','071102901',21);
+Insert into clientul
+Values(secclient.nextval,'Yuji','Itadori','Yuri123@juju.jp','0041412',25);
+Insert into clientul
+Values(secclient.nextval,'Hill','Jenna','jennaH2@yahoo.com','0700412',15);
+Insert into clientul
+Values(secclient.nextval,'Jones','Nick','Jnick@gmail.com','011212',15);
+Insert into clientul
+Values(secclient.nextval,'Popescu','Marian','Popmar@yahoo.com','0717333',3);
+Insert into clientul
+Values(secclient.nextval,'Ionescu','Daria','dorionec1@gmail.ro','07550011',3);
+Insert into clientul
+Values(secclient.nextval,'Ionescu','Dorel',NULL,'04443333',3);
+
+
+CREATE SEQUENCE secang
+INCREMENT BY 4
+START WITH 20
+MAXVALUE 1000
+NOCYCLE;
+
+
+Insert into angajati
+values(secang.nextval,8,'Soare','Tilea',2500,'Camerista',NULL,'MenajSRL');
+Insert into angajati
+values(secang.nextval,8,'Saftoiu','Iulian',3000,'Receptionista',2,NULL);
+Insert into angajati
+values(secang.nextval,8,'Boroi','Aurelia',2700,'Camerista',NULL,'AuPair');
+Insert into angajati
+values(secang.nextval,8,'Gogeanu','Lavinia',4000,'Receptionista',4,NULL);
+
+Insert into angajati
+values(secang.nextval,11,'Vasilescu','Ana',3300,'Camerista',NULL,'EutochemSRL');
+Insert into angajati
+values(secang.nextval,11,'Toma','Marcel',3100,'Camerista',NULL,'MenajSRL');
+Insert into angajati
+values(secang.nextval,11,'Cojoc','Florentin',4500,'Receptionista',3,NULL);
+Insert into angajati
+values(secang.nextval,11,'Iordanescu','Alexandru',4000,'Receptionista',2,NULL);
+
+Insert into angajati
+values(secang.nextval,14,'Mircea','Rodica',2200,'Camerista',NULL,'EutochemSRL');
+Insert into angajati
+values(secang.nextval,14,'Toma','Ion',5000,'Camerista',NULL,'AuPair');
+Insert into angajati
+values(secang.nextval,14,'Ciobanu','Sorina',4200,'Receptionista',2,NULL);
+Insert into angajati
+values(secang.nextval,14,'Lazar','Mihnea',3600,'Receptionista',2,NULL);
+
+Insert into angajati
+values(secang.nextval,17,'Pirvu','Felix',2530,'Camerista',NULL,'MenajSRL');
+Insert into angajati
+values(secang.nextval,17,'Giurgiu','Elena',2000,'Camerista',NULL,'AuPair');
+Insert into angajati
+values(secang.nextval,17,'Zamfir','Mihai',5000,'Receptionista',5,NULL);
+Insert into angajati
+values(secang.nextval,17,'Ungureanu','Ilinca',2234,'Receptionista',3,NULL);
+
+Insert into angajati
+values(secang.nextval,20,'Ionescu','Florenta',3200,'Camerista',NULL,'AuPair');
+Insert into angajati
+values(secang.nextval,20,'Apostol','Catalina',4100,'Camerista',NULL,'AuPair');
+Insert into angajati
+values(secang.nextval,20,'Ionescu','Ina',3200,'Receptionista',6,NULL);
+Insert into angajati
+values(secang.nextval,20,'Lazar','Ana',8600,'Receptionista',2,NULL);
+
+
+
+CREATE SEQUENCE secrez
+INCREMENT BY 8
+START WITH 17
+MAXVALUE 10000
+NOCYCLE;
+
+Insert into rezervare
+values(secrez.nextval,to_date('10-07-2021','dd-mm-yyyy'),to_date('17-07-2021','dd-mm-yyyy'),sysdate,53, 100,96);
+Insert into rezervare
+values(secrez.nextval,to_date('29-08-2021','dd-mm-yyyy'),to_date('07-09-2021','dd-mm-yyyy'),to_date('10-04-2021','dd-mm-yyyy'),56, 20,36);
+Insert into rezervare
+values(secrez.nextval,to_date('22-08-2021','dd-mm-yyyy'),to_date('10-09-2021','dd-mm-yyyy'),to_date('01-04-2021','dd-mm-yyyy'),59, 30,28);
+Insert into rezervare
+values(secrez.nextval,to_date('21-06-2021','dd-mm-yyyy'),to_date('28-06-2021','dd-mm-yyyy'),to_date('02-05-2021','dd-mm-yyyy'),62, 40,48);
+Insert into rezervare
+values(secrez.nextval,to_date('01-09-2021','dd-mm-yyyy'),to_date('11-09-2021','dd-mm-yyyy'),to_date('03-04-2021','dd-mm-yyyy'),65, 45,48);
+Insert into rezervare
+values(secrez.nextval,to_date('22-09-2021','dd-mm-yyyy'),to_date('01-10-2021','dd-mm-yyyy'),to_date('01-03-2021','dd-mm-yyyy'),68, 70,64);
+Insert into rezervare
+values(secrez.nextval,to_date('22-09-2021','dd-mm-yyyy'),to_date('01-10-2021','dd-mm-yyyy'),to_date('01-03-2021','dd-mm-yyyy'),71, 75,68);
+Insert into rezervare
+values(secrez.nextval,to_date('19-08-2021','dd-mm-yyyy'),to_date('02-09-2021','dd-mm-yyyy'),to_date('10-04-2021','dd-mm-yyyy'),74, 100,100);
+Insert into rezervare
+values(secrez.nextval,to_date('22-08-2021','dd-mm-yyyy'),to_date('10-08-2021','dd-mm-yyyy'),to_date('02-04-2021','dd-mm-yyyy'),77, 105,100);
+Insert into rezervare
+values(secrez.nextval,to_date('21-10-2021','dd-mm-yyyy'),to_date('08-11-2021','dd-mm-yyyy'),to_date('02-02-2021','dd-mm-yyyy'),80, 110,96);
+Insert into rezervare
+values(secrez.nextval,to_date('01-10-2021','dd-mm-yyyy'),to_date('09-10-2021','dd-mm-yyyy'),to_date('22-04-2021','dd-mm-yyyy'),83, 80,80);
+Insert into rezervare
+values(secrez.nextval,to_date('22-09-2021','dd-mm-yyyy'),to_date('01-10-2021','dd-mm-yyyy'),to_date('27-03-2021','dd-mm-yyyy'),86, 85,84);
+Insert into rezervare
+values(secrez.nextval,to_date('22-11-2021','dd-mm-yyyy'),to_date('02-12-2021','dd-mm-yyyy'),to_date('05-03-2021','dd-mm-yyyy'),89, 90,84);
+Insert into rezervare
+values(secrez.nextval,to_date('28-12-2021','dd-mm-yyyy'),to_date('03-01-2022','dd-mm-yyyy'),to_date('01-02-2021','dd-mm-yyyy'),92, 15,28);
+Insert into rezervare
+values(secrez.nextval,to_date('17-07-2021','dd-mm-yyyy'),to_date('27-07-2021','dd-mm-yyyy'),to_date('17-05-2021','dd-mm-yyyy'),95, 25,36);
+Insert into rezervare
+values(secrez.nextval,to_date('22-09-2021','dd-mm-yyyy'),to_date('25-09-2021','dd-mm-yyyy'),to_date('12-03-2021','dd-mm-yyyy'),98, 60,64);
+Insert into rezervare
+values(secrez.nextval,to_date('15-12-2021','dd-mm-yyyy'),to_date('20-12-2021','dd-mm-yyyy'),to_date('16-03-2021','dd-mm-yyyy'),101, 65,68);
+
+insert into APARE_IN_ISTORICUL
+VALUES(15,53,5500);
+insert into APARE_IN_ISTORICUL
+VALUES(15,101,2500);
+insert into APARE_IN_ISTORICUL
+VALUES(20,56,6700);
+insert into APARE_IN_ISTORICUL
+VALUES(20,98,4400);
+insert into APARE_IN_ISTORICUL
+VALUES(25,59,5700);
+insert into APARE_IN_ISTORICUL
+VALUES(30,65,4000);
+insert into APARE_IN_ISTORICUL
+VALUES(35,77,7700);
+insert into APARE_IN_ISTORICUL
+VALUES(40,83,5500);
+insert into APARE_IN_ISTORICUL
+VALUES(45,86,2200);
+insert into APARE_IN_ISTORICUL
+VALUES(50,86,8800);
+insert into APARE_IN_ISTORICUL
+VALUES(55,89,9100);
+insert into APARE_IN_ISTORICUL
+VALUES(60,92,5200);
+insert into APARE_IN_ISTORICUL
+VALUES(65,95,3200);
+insert into APARE_IN_ISTORICUL
+VALUES(70,53,7600);
+insert into APARE_IN_ISTORICUL
+VALUES(75,86,2200);
+insert into APARE_IN_ISTORICUL
+VALUES(80,56,8800);
+insert into APARE_IN_ISTORICUL
+VALUES(85,89,9100);
+insert into APARE_IN_ISTORICUL
+VALUES(90,71,5200);
+insert into APARE_IN_ISTORICUL
+VALUES(95,68,3200);
+insert into APARE_IN_ISTORICUL
+VALUES(100,86,7200);
+insert into APARE_IN_ISTORICUL
+VALUES(105,89,10000);
+insert into APARE_IN_ISTORICUL
+VALUES(110,56,9000);
+insert into APARE_IN_ISTORICUL
+VALUES(115,92,2100);
+insert into APARE_IN_ISTORICUL
+VALUES(120,92,6400);
+
+select * from angajati;
+select * from camera;
+
+insert into este_atasata
+values(24,15,2);
+insert into este_atasata
+values(32,15,1);
+insert into este_atasata
+values(24,20,1);
+insert into este_atasata
+values(24,25,3);
+insert into este_atasata
+values(32,30,1);
+insert into este_atasata
+values(24,30,3);
+insert into este_atasata
+values(24,35,2);
+insert into este_atasata
+values(32,35,1);
+insert into este_atasata
+values(44,40,1);
+insert into este_atasata
+values(40,40,1);
+insert into este_atasata
+values(40,45,2);
+insert into este_atasata
+values(44,50,1);
+insert into este_atasata
+values(40,50,3);
+insert into este_atasata
+values(44,55,1);
+insert into este_atasata
+values(40,55,2);
+
+insert into este_atasata
+values(56,60,1);
+insert into este_atasata
+values(56,65,1);
+insert into este_atasata
+values(60,70,2);
+insert into este_atasata
+values(60,75,2);
+insert into este_atasata
+values(56,75,1);
+
+insert into este_atasata
+values(76,80,1);
+insert into este_atasata
+values(72,80,1);
+insert into este_atasata
+values(76,85,2);
+insert into este_atasata
+values(76,90,2);
+insert into este_atasata
+values(72,95,1);
+
+insert into este_atasata
+values(88,100,1);
+insert into este_atasata
+values(88,105,1);
+insert into este_atasata
+values(88,110,2);
+insert into este_atasata
+values(88,115,2);
+insert into este_atasata
+values(92,115,3);
+insert into este_atasata
+values(92,120,3);
+
+commit;
+
+
+/
+
+
+
+CREATE OR REPLACE PROCEDURE exercitiul6 
+is
+type t_imbricat is table of number(3);
+type t_indexat is table of number(3) index by PLS_INTEGER;
+
+id_camera t_imbricat:=t_imbricat();
+id_client t_indexat;
+
+nume_client clientul.nume%type;
+prenume_client clientul.prenume%type;
+id_h hotel.cod_hotel%type;
+nume_h hotel.nume_hotel%type;
+n_rez number(3);
+
+tara_c number(3);
+BEGIN
+select cod_client BULK collect into id_client from clientul;
+
+for i in id_client.first..id_client.last loop
+SELECT cod_camera BULK collect into id_camera 
+from apare_in_istoricul
+where id_client(i) =  cod_client;
+select nume,prenume into nume_client,prenume_client
+from clientul
+where id_client(i) =  cod_client;
+
+dbms_output.put_line('Clientul '||nume_client||' '|| prenume_client||' a stat pana acum in '||id_camera.count()||' camere');
+if id_camera.count() !=0 then
+for a in id_camera.first..id_camera.last loop
+
+select cod_hotel into id_h from camera
+where id_camera(a) = cod_camera;
+select nume_hotel into nume_h FROM hotel
+where cod_hotel = id_h;
+dbms_output.put_line('Camera din hotelul: '||nume_h);
+end loop;
+else dbms_output.put_line('Clientul '||nume_client||' '|| prenume_client||' nu a stat la nici un hotel ');
+end if;
+
+id_camera.delete;
+
+end loop;
+
+
+End;
+/
+execute exercitiul6;
+/
+
+
+CREATE OR REPLACE PROCEDURE exercitiul7 
+is
+TYPE tab_nr IS TABLE OF NUMBER(4);
+n_hotel hotel.nume_hotel%type;
+t_id tab_nr;
+t_nr tab_nr;
+t_ch tab_nr;
+cursor c_camera is (select cod_camera,numar_camera,cod_hotel from camera where cod_hotel in 
+(select cod_hotel from hotel
+where mod(cod_hotel,2)=0));
+BEGIN
+
+ 
+open c_camera;
+fetch c_camera bulk collect into t_id,t_nr,t_ch;
+close c_camera;
+for i in t_id.first..t_id.last loop
+select nume_hotel into n_hotel from hotel where cod_hotel = t_ch(i);
+dbms_output.put_line('Camera cu id-ul '||t_id(i)||' are numarul '||t_nr(i)||' si apartine hotelului: '||n_hotel);
+
+
+end loop;
+End;
+/
+execute exercitiul7;
+/
+create or replace function exercitiul8
+(n_tara in tara.nume_tara%type)
+return varchar2
+is
+TYPE tab_nr IS TABLE OF varchar2(90);
+t_rez tab_nr;
+contor1 number(4);
+contor2 number(4);
+begin
+
+contor1:=0;
+contor2:=0;
+select case when r.data_rezervare >to_date('05-04-2021', 'DD-MM-YYYY') then 'rezervarea a fost facuta dupa 02-04-2021' else 'rezervarea a fost facuta inainte de 02-04-2021' end    bulk collect into t_rez 
+from rezervare r
+WHERE r.cod_client in (select c.cod_client from clientul c
+where c.cod_tara in (select t.cod_tara from tara t
+where t.cod_tara=c.cod_tara and upper(nume_tara)=upper(n_tara)));
+if t_rez.count= 0 then return 'Nu sunt rezervari din tara data';
+else
+for i in t_rez.first..t_rez.last loop
+    if t_rez(i) = 'rezervarea a fost facuta dupa 02-04-2021' then contor1:=contor1+1;
+    else contor2:=contor2+1;
+end if;
+end loop;
+if contor1>contor2 then return 'Mai multe rezervari au fost facute dupa 02-04-2021';
+else if contor2<contor1 then return 'Mai multe rezervari au fost facute inainte de 02-04-2021';
+else return 'Au fost facute acelasi numar de rezervari inainte si dupa 02-04-2021';
+end if;
+end if;
+end if;
+exception
+when NO_DATA_FOUND then
+    DBMS_OUTPUT.PUT_LINE('Tara data nu are rezervari');
+    RAISE_APPLICATION_ERROR (-20000,'Tara data nu are nici un client care sa fi facut o rezervare');
+when TOO_MANY_ROWS then
+    DBMS_OUTPUT.PUT_LINE('Mai multe tari poarta acelasi nume');
+    RAISE_APPLICATION_ERROR (-20001, 'Exista mai multe tari in baza de date cu acelasi nume');
+end;
+/
+BEGIN
+DBMS_OUTPUT.PUT_LINE(exercitiul8('Romania'));
+END;
+/
+
+--ex9
+
+create or replace procedure exercitiul9
+(ntara tara.nume_tara%type)
+is
+id_tara tara.cod_tara%type;
+TYPE tab_nr IS TABLE OF varchar2(60);
+n_hotel tab_nr;
+begin 
+
+select  h.nume_hotel bulk collect into n_hotel from hotel h
+where h.cod_hotel in (select ca.cod_hotel from camera ca
+where ca.cod_camera in(select r.cod_camera from rezervare r
+WHERE r.cod_client in (select c.cod_client from clientul c
+where c.cod_tara in (select t.cod_tara from tara t
+where t.cod_tara=c.cod_tara and upper(nume_tara)=upper(ntara)))));
+
+for i in n_hotel.first..n_hotel.last loop
+DBMS_OUTPUT.PUT_LINE(n_hotel(i));
+end loop;
+exception
+when NO_DATA_FOUND then
+    DBMS_OUTPUT.PUT_LINE('Tara data nu are rezervari');
+    RAISE_APPLICATION_ERROR (-20000,'Tara data nu are nici un client care sa fi facut o rezervare');
+when TOO_MANY_ROWS then
+    DBMS_OUTPUT.PUT_LINE('Mai multe tari poarta acelasi nume');
+    RAISE_APPLICATION_ERROR (-20001, 'Exista mai multe tari in baza de date cu acelasi nume');
+when VALUE_ERROR then
+    DBMS_OUTPUT.PUT_LINE('Tara data nu are rezervari');
+    RAISE_APPLICATION_ERROR (-20002, 'Tara data nu are nici un client care sa fi facut o rezervare, deci NULL');
+
+end exercitiul9;
+/
+
+
+execute exercitiul9('Romania');
+
+/
+
+--exercitiul 10
+
+CREATE OR REPLACE TRIGGER ext10
+      BEFORE INSERT OR UPDATE OR DELETE ON rezervare
+BEGIN
+ --IF (((MONTH(to_char(sysdate),DD/MM/YYYY)=12) or (MONTH(to_char(sysdate),DD/MM/YYYY)=1))and DAY(sysdate)=1) 
+ IF ((to_char(sysdate,'DD/MM')='01/12')or(to_char(sysdate,'DD/MM')='01/01') )
+     OR (TO_CHAR(SYSDATE,'HH24') NOT BETWEEN 10 AND 22)
+        OR ((to_char(sysdate,'D')=6) or (to_char(sysdate,'D')=7))
+ THEN
+    RAISE_APPLICATION_ERROR(-20001,'tabelul nu poate fi actualizat');
+ END IF;
+END;
+/
+
+select * from rezervare;
+
+insert into rezervare
+values(1,SYSDATE,SYSDATE,SYSDATE,53,100,96);
+DELETE from rezervare where cod_rezervare=1;
+select to_char(sysdate,'D') from dual;
+
+drop trigger ext10;
+
+--ex 11
+CREATE OR REPLACE TRIGGER ext11
+      BEFORE  UPDATE of cod_rezervare,data_start,data_final,data_rezervare,cod_client  ON rezervare
+      for each row
+ when((old.cod_rezervare!= new.cod_rezervare)
+    or(old.cod_client!=new.cod_client)
+        or(new.data_rezervare!= sysdate)
+            or(MONTHS_BETWEEN( old.data_start, new.data_start)>1)
+                or(MONTHS_BETWEEN( old.data_final, new.data_final)>1))
+ begin
+    RAISE_APPLICATION_ERROR(-20000,'Valori invalide');
+END;
+
+
+UPDATE rezervare
+set data_start = sysdate;
+drop trigger ext11;
+/
+
+--12
+
+CREATE OR REPLACE TRIGGER ext12
+AFTER DROP ON SCHEMA
+BEGIN
+  RAISE_APPLICATION_ERROR (-20002, 'Tabelele nu pot fi sterse');
+  ROLLBACK;
+END;
+/
+
+create table test12(id number(2));
+DROP TABLE test12;
+DROP TABLE rezervare;
+DROP TRIGGER ext12;
+
+
+Create or Replace PACKAGE ex13 is
+
+procedure exercitiul6;
+procedure exercitiul7;
+function exercitiul8
+(n_tara in tara.nume_tara%type)
+return varchar2;
+procedure exercitiul9
+(ntara tara.nume_tara%type);
+end ex13;
+/
+
+Create or Replace PACKAGE BODY ex13
+is
+procedure exercitiul6
+IS
+type t_imbricat is table of number(3);
+type t_indexat is table of number(3) index by PLS_INTEGER;
+
+id_camera t_imbricat:=t_imbricat();
+id_client t_indexat;
+
+nume_client clientul.nume%type;
+prenume_client clientul.prenume%type;
+id_h hotel.cod_hotel%type;
+nume_h hotel.nume_hotel%type;
+n_rez number(3);
+
+tara_c number(3);
+BEGIN
+select cod_client BULK collect into id_client from clientul;
+
+for i in id_client.first..id_client.last loop
+SELECT cod_camera BULK collect into id_camera 
+from apare_in_istoricul
+where id_client(i) =  cod_client;
+select nume,prenume into nume_client,prenume_client
+from clientul
+where id_client(i) =  cod_client;
+
+dbms_output.put_line('Clientul '||nume_client||' '|| prenume_client||' a stat pana acum in '||id_camera.count()||' camere');
+if id_camera.count() !=0 then
+for a in id_camera.first..id_camera.last loop
+
+select cod_hotel into id_h from camera
+where id_camera(a) = cod_camera;
+select nume_hotel into nume_h FROM hotel
+where cod_hotel = id_h;
+dbms_output.put_line('Camera din hotelul: '||nume_h);
+end loop;
+else dbms_output.put_line('Clientul '||nume_client||' '|| prenume_client||' nu a stat la nici un hotel ');
+end if;
+
+id_camera.delete;
+end loop;
+End;
+
+procedure exercitiul7
+IS
+TYPE tab_nr IS TABLE OF NUMBER(4);
+n_hotel hotel.nume_hotel%type;
+t_id tab_nr;
+t_nr tab_nr;
+t_ch tab_nr;
+cursor c_camera is (select cod_camera,numar_camera,cod_hotel from camera where cod_hotel in 
+(select cod_hotel from hotel
+where mod(cod_hotel,2)=0));
+BEGIN
+
+ 
+open c_camera;
+fetch c_camera bulk collect into t_id,t_nr,t_ch;
+close c_camera;
+for i in t_id.first..t_id.last loop
+select nume_hotel into n_hotel from hotel where cod_hotel = t_ch(i);
+dbms_output.put_line('Camera cu id-ul '||t_id(i)||' are numarul '||t_nr(i)||' si apartine hotelului: '||n_hotel);
+
+
+end loop;
+End;
+
+function exercitiul8
+(n_tara in tara.nume_tara%type)
+return varchar2
+is
+TYPE tab_nr IS TABLE OF varchar2(90);
+t_rez tab_nr;
+contor1 number(4);
+contor2 number(4);
+begin
+
+contor1:=0;
+contor2:=0;
+select case when r.data_rezervare >to_date('05-04-2021', 'DD-MM-YYYY') then 'rezervarea a fost facuta dupa 02-04-2021' else 'rezervarea a fost facuta inainte de 02-04-2021' end    bulk collect into t_rez 
+from rezervare r
+WHERE r.cod_client in (select c.cod_client from clientul c
+where c.cod_tara in (select t.cod_tara from tara t
+where t.cod_tara=c.cod_tara and upper(nume_tara)=upper(n_tara)));
+if t_rez.count= 0 then return 'Nu sunt rezervari din tara data';
+else
+for i in t_rez.first..t_rez.last loop
+    if t_rez(i) = 'rezervarea a fost facuta dupa 02-04-2021' then contor1:=contor1+1;
+    else contor2:=contor2+1;
+end if;
+end loop;
+if contor1>contor2 then return 'Mai multe rezervari au fost facute dupa 02-04-2021';
+else if contor2<contor1 then return 'Mai multe rezervari au fost facute inainte de 02-04-2021';
+else return 'Au fost facute acelasi numar de rezervari inainte si dupa 02-04-2021';
+end if;
+end if;
+end if;
+exception
+when NO_DATA_FOUND then
+    DBMS_OUTPUT.PUT_LINE('Tara data nu are rezervari');
+    RAISE_APPLICATION_ERROR (-20000,'Tara data nu are nici un client care sa fi facut o rezervare');
+when TOO_MANY_ROWS then
+    DBMS_OUTPUT.PUT_LINE('Mai multe tari poarta acelasi nume');
+    RAISE_APPLICATION_ERROR (-20001, 'Exista mai multe tari in baza de date cu acelasi nume');
+end;
+
+ procedure exercitiul9
+(ntara tara.nume_tara%type)
+is
+id_tara tara.cod_tara%type;
+TYPE tab_nr IS TABLE OF varchar2(60);
+n_hotel tab_nr;
+begin 
+
+select  h.nume_hotel bulk collect into n_hotel from hotel h
+where h.cod_hotel in (select ca.cod_hotel from camera ca
+where ca.cod_camera in(select r.cod_camera from rezervare r
+WHERE r.cod_client in (select c.cod_client from clientul c
+where c.cod_tara in (select t.cod_tara from tara t
+where t.cod_tara=c.cod_tara and upper(nume_tara)=upper(ntara)))));
+
+for i in n_hotel.first..n_hotel.last loop
+DBMS_OUTPUT.PUT_LINE(n_hotel(i));
+end loop;
+exception
+when NO_DATA_FOUND then
+    DBMS_OUTPUT.PUT_LINE('Tara data nu are rezervari');
+    RAISE_APPLICATION_ERROR (-20000,'Tara data nu are nici un client care sa fi facut o rezervare');
+when TOO_MANY_ROWS then
+    DBMS_OUTPUT.PUT_LINE('Mai multe tari poarta acelasi nume');
+    RAISE_APPLICATION_ERROR (-20001, 'Exista mai multe tari in baza de date cu acelasi nume');
+when VALUE_ERROR then
+    DBMS_OUTPUT.PUT_LINE('Tara data nu are rezervari');
+    RAISE_APPLICATION_ERROR (-20002, 'Tara data nu are nici un client care sa fi facut o rezervare, deci NULL');
+
+end exercitiul9;
+
+
+end;
+/
+execute ex13.exercitiul6;
+execute ex13.exercitiul7;
+BEGIN
+DBMS_OUTPUT.PUT_LINE(ex13.exercitiul8('Romania'));
+END;
+/
+BEGIN
+DBMS_OUTPUT.PUT_LINE(ex13.exercitiul8('Italia'));
+END;
+/
+BEGIN
+DBMS_OUTPUT.PUT_LINE(ex13.exercitiul8('R'));
+END;
+/
+
+execute ex13.exercitiul9('Romania');
+
+/
+execute ex13.exercitiul9('R');
+
+/
+
