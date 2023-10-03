@@ -11,17 +11,20 @@ Follow in the footsteps of an adventure-seeking cowboy who is determined to save
 town from Jack McCallister, a cynical outlaw gang boss presented with eye-catching
 visual graphics and several innovative gameplay mechanics. The paper aims to detail
 several techniques and applications used to develop a complete video game in Unity.
+
 The development process of the game was divided into several stages: we established
 the game’s goals and developed the basic concepts and concept map, I designed the game
 defining the game mechanics, story, and levels, I created visual elements using Photoshop,
 I moved to the programming stage and implemented the game mechanics in the chosen
 engine, I added visual and auditory elements, and finally, I put the game through a testing
 process to eliminate errors.
+
 To complete this project, I used several insights gained during my three years of
 university: planning and developing an application, using a C# language game engine,
 and using object-oriented programming. In addition, I learned how to develop a complete
 and complex game using newly acquired information, which is a deeper understanding of
 the code, the objects used in the game, and the multitude of features that Unity provides.
+
 In the end, I combined the steps of developing a game with original characters, stories,
 ideas, visuals, and mechanics along with the information and skills I have acquired through
 years of study and my own experiences to develop a project that is based on creating
