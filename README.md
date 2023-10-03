@@ -6,32 +6,27 @@ This is a list of my school projects.
 In this folder, I have 2 different games:
 * 2D Top-down Shooter, my bachelor's degree
 
-**Outlaw Outpost** este un joc top-down shooter 2D plasat în lumea captivantă a Vestului
-Sălbatic. Jucătorul calcă pe urmele unui cowboy dornic de aventură care este determinat
-să salveze orașul de Jack McCallister, un cinic șef de bandă de nelegiuiți prezentat cu
-ajutorul unei grafici vizuale atrăgătoare și a mai multor mecanici de joc inovatoare. Lucrarea
-are ca scop prezentarea detaliată a mai multor tehnici și aplicații folosite pentru
-dezvoltarea unui joc video complet în Unity.
-
-Procesele de dezvoltare ale acestuia au fost împărțite în mai multe etape: am stabilit
-obiectivele jocului și am dezvoltat conceptele specifice și harta conceptuală, am făcut designul
-jocului definind mecanicile de joc, povestea și nivelurile, am creat elemente vizuale
-folosind Photoshop, am trecut la etapa de programare și am implementat mecanicile de
-joc în motorul ales, am adăugat elemente vizuale și auditive, iar în final am supus jocul
-unui proces de testare pentru a elimina erorile.
-
-Pentru a realiza acest proiect m-am folosit de mai multe informații dobândite pe
-parcursul celor trei ani de facultate: planificarea și dezvoltarea unei aplicații, folosirea
-unui motor de joc în limbaj C# și utilizarea programării orientate pe obiecte. În plus, am
-învățat să dezvolt un joc complet și complex folosindu-mă de informații noi dobândite, care
-reprezintă înțelegerea mai în amănunt a codului, obiectelor folosite în joc și multitudinea
-de funcționalități pe care Unity le oferă.
-
-În final, am îmbinat pașii de dezvoltare ai unui joc cu personaje, povești, idei, imagini
-vizuale și mecanici originale alături de informațiile și aptitudinile dobândite pe parcursul
-anilor de studii și a propriilor experiențe pentru a dezvolta un proiect care are la bază
-crearea unei experiențe plăcute și relaxante pentru jucători care stârnește interes, empatie
-și dorința de aventură.
+**Outlaw Outpost** is a top-down 2D shooter set in the exciting world of the Wild West.
+Follow in the footsteps of an adventure-seeking cowboy who is determined to save his
+town from Jack McCallister, a cynical outlaw gang boss presented with eye-catching
+visual graphics and several innovative gameplay mechanics. The paper aims to detail
+several techniques and applications used to develop a complete video game in Unity.
+The development process of the game was divided into several stages: we established
+the game’s goals and developed the basic concepts and concept map, I designed the game
+defining the game mechanics, story, and levels, I created visual elements using Photoshop,
+I moved to the programming stage and implemented the game mechanics in the chosen
+engine, I added visual and auditory elements, and finally, I put the game through a testing
+process to eliminate errors.
+To complete this project, I used several insights gained during my three years of
+university: planning and developing an application, using a C# language game engine,
+and using object-oriented programming. In addition, I learned how to develop a complete
+and complex game using newly acquired information, which is a deeper understanding of
+the code, the objects used in the game, and the multitude of features that Unity provides.
+In the end, I combined the steps of developing a game with original characters, stories,
+ideas, visuals, and mechanics along with the information and skills I have acquired through
+years of study and my own experiences to develop a project that is based on creating
+an enjoyable and relaxing experience for players that sparks interest, empathy, and a desire
+for adventure.
   
 
 ## Object-oriented_programming
