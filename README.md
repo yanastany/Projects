@@ -50,7 +50,7 @@ INAMIC  | DESCRIERE
 ------------- | -------------
 Skeleton  | Acest inamic este reprezentat de un schelet care a fost candva un locuitor al orasului "Info". Fiind infectat cu virusul "FMI2023", care a pus stapanire pe oras, acum interesele acestuia s-au schimbat si cel care era odata un vecin prietenos a devenit un zombie care imediat ce este spawnat pe harta, se deplaseaza catre eroina pentru a o distruge. Cand ajunge in apropierea acesteia, o ataca cu sabia din dotare si ii provoaca damage.
 
-#Web_development
+# Web_development
 
 * Web app using Visual Studio, Javascript, React, Firebase - team of 7
 #### NOTA FINALA PROIECT - NOTA 10
