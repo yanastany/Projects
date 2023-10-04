@@ -14,13 +14,33 @@ This is a list of my school projects.
     
       I took part in a private Kaggle competition hosted by my AI professor and scored a 0.61938/1 and **finished 29 out of 129 competitors**
         
-    
+# Object-oriented_programming
+
+Multiple C++ projects from the first course that we learned OOP. Each problem has a document where the requirements are.
+
+* What I used:
+   * C++
+   * CodeBlocks
+   * STL
+   * Basic OOP: Constructors, Classes, Getter, Setter, Destructor, Original operators, Upcasting, Downcasting, Virtual functions, Static variables, Interactive Menu, Templates, Abstract classes, RTTI, Exceptions, Diamond problem
+
+# Advanced_object-oriented_programing 
+
+A more complex OOP project, using more complicated relationships between classes, and more complex OOP concepts in general. This project simulates a library containing multiple types of books a student can borrow.
+
+* What I used:
+   * Java
+   * IntelliJ
+   * advanced OOP
+
+##Oracle_SQL - Hotel management database
     
 
 # Game_Development
 
 In this folder, I have 2 different games:
 * 2D Top-down Shooter, my bachelor's degree using C#, Unity, OOP, AI, Photoshop
+* 
   Final Bachelors degree mark: 9.5/10
 
 **Outlaw Outpost** is a top-down 2D shooter set in the exciting world of the Wild West.
@@ -146,29 +166,10 @@ In cazul programului nostru, unit testing-ul nu este foarte relevant, intrucat c
 * ASP.NET and Angular Project - F1 team management app
 The project was made in a team of 2 people where we learned both C#, the .NET framework and Angular. This web app was made to manage a Formula 1 team, its' drivers, and the schedule. As it was a learning project, it was mostly composed of CRUD operations and different front-end designs.
 
-* Basic Web app using HTML, CSS, Javascript and JSON
+* Basic Web app using HTML, CSS, Javascript, and JSON
       This was my first ever web app. It displays multiple pages about my favourite game Red Dead Redemption 2. I created a website that used all the basic features in HTML and CSS(lists, animations, flex) and created a guessing game and an authentication option using JSON.
 
-# Object-oriented_programming
 
-Multiple C++ projects from the first course that we learned OOP. Each problem has a document where the requirements are.
-
-* What I used:
-   * C++
-   * CodeBlocks
-   * STL
-   * Basic OOP: Constructors, Classes, Getter, Setter, Destructor, Original operators, Upcasting, Downcasting, Virtual functions, Static variables, Interactive Menu, Templates, Abstract classes, RTTI, Exceptions, Diamond problem
-
-# Advanced_object-oriented_programing 
-
-A more complex OOP project, using more complicated relationships between classes, and more complex OOP concepts in general. This project simulates a library containing multiple types of books a student can borrow.
-
-* What I used:
-   * Java
-   * IntelliJ
-   * advanced OOP
-
-##Oracle_SQL - Hotel management database
 
 Project made to learn all the aspects of SQL, from designing a database to adding complex queries and relationships.
 
