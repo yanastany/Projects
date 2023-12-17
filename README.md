@@ -1,5 +1,5 @@
 # Projects
-This is a list of my school projects.
+This is a list of my projects.
 
 # Artificial_intelligence
   * Digit Recognizer
